@@ -23,26 +23,26 @@ int main(int argc, char **argv) {
 	int       mode = 0;
 	int       ret = 0;
 
-	else if( argc == 2 ) {
+	if( argc == 2 ) {
 		request.url = argv[1];
 		mode = 1;
 	}
 	else if( argc == 3 ) {
 		// Open file and pick load mode
-		fp = fopen (argv[2],"r");
+		fp = fopen (argv[1],"r");
 		if ( fp == NULL ) {
 			printf("File failed to open!\n");
 			return 0;
 		}
-		if(atoi(argv[3]) == 0) {
+		if(atoi(argv[2]) == 0) {
 			printf("Invalid mode given!\n");
 			return 0;
 		}
-		mode = 2 + atoi(argv[3]);
+		mode = 2 + atoi(argv[2]);
 		
 	}
 	else {
-		printf("Usage: something_client [web_address] | [address_file load_mode]\n Pinging\n");
+		printf("Usage: something_client [web_address] | [address_file load_mode]\nPinging\n");
 		mode = 0;
 	}
 
