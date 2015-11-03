@@ -15,6 +15,14 @@ using namespace apache::thrift::transport;
 using namespace Test;
 using namespace std;
 
+void loadmode1( SomethingClient *client, FILE *fp ) {
+
+}
+
+void loadmode2( SomethingClient *client, FILE *fp ) {
+
+}
+
 int main(int argc, char **argv) {
 
 	Url_req   request;
@@ -60,6 +68,12 @@ int main(int argc, char **argv) {
 	case 1 :
 		client.request(_return, request);
 		cout << _return << endl;
+		break;
+	case 3 :
+		loadmode1( &client, fp );
+		break;
+	case 4 :
+		loadmode2( &client, fp );
 		break;
 	default :
 		printf("INVALID MODE\n");
