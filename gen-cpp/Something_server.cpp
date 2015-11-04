@@ -2,6 +2,8 @@
 // You should copy it to another filename to avoid overwriting it.
 
 #include "Something.h"
+#include "Cache.h"
+#include "Random.h"
 #include <thrift/protocol/TBinaryProtocol.h>
 #include <thrift/server/TSimpleServer.h>
 #include <thrift/transport/TServerSocket.h>
@@ -22,6 +24,7 @@ using namespace  ::Test;
 using namespace std;
 
 string data;
+Cache* proxyCache;
 
 size_t write_to_string(char *buf, size_t size, size_t count, void *stream) {
 	for (unsigned int c = 0; c < size*count; c++){
@@ -71,7 +74,21 @@ class SomethingHandler : virtual public SomethingIf {
 };
 
 int main(int argc, char **argv) {
+  string policy;
+  int cacheSize;
   int port = 9090;
+  if (argc == 3){
+    policy = argv[1];
+    cacheSize = atoi(argv[2]);
+  }
+  else{
+    policy = "Random";
+	cacheSize = 0;
+  }
+  if (policy == "Random"){		
+    proxyCache = new Random(cacheSize);
+  }
+
   shared_ptr<SomethingHandler> handler(new SomethingHandler());
   shared_ptr<TProcessor> processor(new SomethingProcessor(handler));
   shared_ptr<TServerTransport> serverTransport(new TServerSocket(port));

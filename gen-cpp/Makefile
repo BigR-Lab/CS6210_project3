@@ -1,8 +1,8 @@
-GEN_SRC := Something.cpp file_constants.cpp file_types.cpp
+GEN_SRC := Something.cpp file_constants.cpp file_types.cpp Random.cpp Cache.h
 GEN_OBJ := $(patsubst %.cpp,%.o, $(GEN_SRC))
 
 THRIFT_DIR := /usr/local/include/thrift
-BOOST_DIR := /usr/local/include
+BOOST_DIR := /usr/include
 
 INC := -I$(THRIFT_DIR) -I$(BOOST_DIR)
 
@@ -11,13 +11,13 @@ INC := -I$(THRIFT_DIR) -I$(BOOST_DIR)
 all: something_server something_client
 
 %.o: %.cpp
-	$(CXX) -Wall -DHAVE_INTTYPES_H -DHAVE_NETINET_IN_H $(INC) -c $< -o $@
+		$(CXX) -Wall -DHAVE_INTTYPES_H -DHAVE_NETINET_IN_H $(INC) -c $< -o $@
 
 something_server: Something_server.o $(GEN_OBJ)
-	$(CXX) $^ -o $@ -L/usr/local/lib -lthrift -lcurl
+		$(CXX) $^ -o $@ -L/usr/local/lib -lthrift -lcurl
 
 something_client: Something_client.o $(GEN_OBJ)
-	$(CXX) $^ -o $@ -L/usr/local/lib -lthrift 
+		$(CXX) $^ -o $@ -L/usr/local/lib -lthrift 
 
 clean:
-	$(RM) *.o something_server something_client
+		$(RM) *.o something_server something_client
