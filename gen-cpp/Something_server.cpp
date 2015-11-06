@@ -74,8 +74,9 @@ class SomethingHandler : virtual public SomethingIf {
 
 				curl_easy_perform(curl);
 				
-				
+				printf("Retrieved site of size %d!\n",data.size());
 				_return = data;
+				proxyCache->set(req.url.c_str(), data);
 			
 				curl_easy_cleanup(curl);    					
 				data.clear(); 
