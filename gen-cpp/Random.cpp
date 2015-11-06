@@ -1,8 +1,8 @@
 #include "Random.h"
 
+
 using namespace std;
 using boost::unordered_map;
-
 
 Random::Random(int s): Cache(s) {
 	currSize = 0;
@@ -21,11 +21,12 @@ string Random::get(string key){
 }
 		
 void Random::set(string key, string value){
-	if ( cache.count(key) > 0 ) {
+	if ( cache.count(key) > 0 || value.size() > size) {
 		return;
 	}
 	else{
-		if (currSize + value.size() > size){
+		//keep evicting until currSize is small enough
+		while (currSize + value.size() > size){
 			evict();
 		}
 		//using character count as size, because 1 char = 1 byte
@@ -36,6 +37,19 @@ void Random::set(string key, string value){
 
 //randomly select item and delete from hash
 void Random::evict(){
+	int val = rand() % cache.size();
+
+	boost::unordered_map<string,string>::iterator random_it;
+	//it++ is the only way to advance the iterator in boost
+	int i = 0;
+	for(random_it = cache.begin(); random_it != cache.end(); ++random_it){
+		if (i == val){
+			break;
+		}
+		i++;
+	}
 	
+	currSize -= random_it->second.size();
+	cache.erase(random_it);
 }
 
