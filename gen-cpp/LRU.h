@@ -2,8 +2,10 @@
 #define LRU_H
 
 #include "Cache.h"
+#include <boost/unordered_map.hpp>
 
 using namespace std;
+using boost::unordered_map;
 
 class Lru: public Cache {
 	public:
@@ -15,6 +17,9 @@ class Lru: public Cache {
 	
 	private:
 		int currSize;
+		unordered_map<string,int*> cache;
+
+		
 };
 
 #endif

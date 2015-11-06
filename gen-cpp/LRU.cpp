@@ -1,6 +1,7 @@
 #include "LRU.h"
 
 using namespace std;
+using boost::unordered_map;
 
 Lru::Lru(int s): Cache(s) {
 	currSize = 0;

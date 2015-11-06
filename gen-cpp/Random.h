@@ -2,8 +2,10 @@
 #define RANDOM_H
 
 #include "Cache.h"
+#include <boost/unordered_map.hpp>
 
 using namespace std;
+using boost::unordered_map;
 
 class Random: public Cache {
 	public:
@@ -17,6 +19,8 @@ class Random: public Cache {
 		void evict();
 	
 		int currSize;
+		
+		unordered_map<string,string> cache;
 };
 
 #endif

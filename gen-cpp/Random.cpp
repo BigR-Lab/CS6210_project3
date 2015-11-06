@@ -1,10 +1,8 @@
-#include <boost/unordered_map.hpp>
 #include "Random.h"
 
 using namespace std;
 using boost::unordered_map;
 
-unordered_map<string,string> cache;
 
 Random::Random(int s): Cache(s) {
 	currSize = 0;
