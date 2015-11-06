@@ -14,6 +14,8 @@ class Random: public Cache {
 		void set(string key, string value);
 	
 	private:
+		void evict();
+	
 		int currSize;
 };
 

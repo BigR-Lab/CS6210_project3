@@ -1,6 +1,11 @@
+#include <unordered_map>
+#include <string>
+
 #include "Random.h"
 
 using namespace std;
+
+unordered_map<string,string> cache;
 
 Random::Random(int s): Cache(s) {
 	currSize = 0;
@@ -8,9 +13,9 @@ Random::Random(int s): Cache(s) {
 		
 string Random::get(string key){
 	
-	if ( 0 ) {
+	if ( cache.count(key) > 0 ) {
 		// If we find the key
-		return ""; // return the actual string
+		return cache[key]; // return the actual string
 	}
 	else {
 		return "0";
@@ -19,6 +24,21 @@ string Random::get(string key){
 }
 		
 void Random::set(string key, string value){
+	if ( cache.count(key) > 0 ) {
+		return;
+	}
+	else{
+		if (currSize + value.size() > size){
+			evict();
+		}
+		//using character count as size, because 1 char = 1 byte
+		currSize += value.size();
+		cache[key] = value;
+	}
 }
+
+//randomly select item and delete from hash
+void Random::evict(){
 	
+}
 
