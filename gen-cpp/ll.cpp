@@ -56,8 +56,19 @@ void ll_bubble(ll_t* list, ll_node_t* node){
 	// Check if already front
 	if(list->front == node) return;
 	
-	// TODO
+	if(list->back == node){
+		node->prev->next = NULL;
+		list->back = node->prev;
+	}
+	else{
+		node->prev->next = node->next;
+		node->next->prev = node->prev;
+	}
 	
+	list->front->prev = node;
+	node->next = list->front;
+	node->prev = NULL;
+	list->front = node;
 }
 
 int ll_size(ll_t* list){
