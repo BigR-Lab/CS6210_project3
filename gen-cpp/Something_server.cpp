@@ -58,10 +58,8 @@ class SomethingHandler : virtual public SomethingIf {
 		
 		CURL   *curl;
 		string key, temp;
-		
-		key = hash(req.url.c_str());
-		
-		temp = proxyCache->get(key);
+				
+		temp = proxyCache->get(req.url.c_str());
 		if( temp == "0" ) {
 			curl = curl_easy_init();
 			_return = "ERROR";
