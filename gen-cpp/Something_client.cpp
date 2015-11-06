@@ -66,6 +66,7 @@ int main(int argc, char **argv) {
 		printf("ping returned: %d\n",ret);
 		break;
 	case 1 :
+		printf("requesting single page!\n");
 		client.request(_return, request);
 		cout << _return << endl;
 		break;

@@ -2,12 +2,14 @@
 // You should copy it to another filename to avoid overwriting it.
 
 #include "Something.h"
-#include "Cache.h"
-#include "Random.h"
 #include <thrift/protocol/TBinaryProtocol.h>
 #include <thrift/server/TSimpleServer.h>
 #include <thrift/transport/TServerSocket.h>
 #include <thrift/transport/TBufferTransports.h>
+
+#include "Cache.h"
+#include "Random.h"
+#include "LRU.h"
 
 #include <curl/curl.h>
 #include <stdlib.h>
@@ -25,6 +27,12 @@ using namespace std;
 
 string data;
 Cache* proxyCache;
+
+string hash( string key ) {
+
+	return "";
+	
+}
 
 size_t write_to_string(char *buf, size_t size, size_t count, void *stream) {
 	for (unsigned int c = 0; c < size*count; c++){
@@ -49,24 +57,37 @@ class SomethingHandler : virtual public SomethingIf {
 	void request(string& _return, const Url_req& req) {
 		
 		CURL   *curl;
-		curl = curl_easy_init();
-		_return = "ERROR";
-	
-		if (curl) {
-			curl_easy_setopt(curl, CURLOPT_URL, req.url.c_str());
-
-			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, &write_to_string);
-			//curl_easy_setopt(curl, CURLOPT_WRITEDATA, &_return);
-
-			curl_easy_perform(curl);
-			
-			cout << "URL Requested: " << req.url << endl;
-			_return = data;
+		string key, temp;
 		
-			curl_easy_cleanup(curl);    					
-			data.clear(); 
-		} else {
-			cout << "Failed to init curl!" << endl;
+		key = hash(req.url.c_str());
+		
+		temp = proxyCache->get(key);
+		if( temp == "0" ) {
+			curl = curl_easy_init();
+			_return = "ERROR";
+			
+			cout << "URL Requested: " << req.url << "; miss in cache" << endl;
+		
+			if (curl) {
+				curl_easy_setopt(curl, CURLOPT_URL, req.url.c_str());
+
+				curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, &write_to_string);
+				//curl_easy_setopt(curl, CURLOPT_WRITEDATA, &_return);
+
+				curl_easy_perform(curl);
+				
+				
+				_return = data;
+			
+				curl_easy_cleanup(curl);    					
+				data.clear(); 
+			} else {
+				cout << "Failed to init curl!" << endl;
+			}
+		}
+		else {
+			cout << "URL Requested: " << req.url << "; hit in cache" << endl;
+			_return = temp;
 		}
 
 	}
@@ -87,6 +108,9 @@ int main(int argc, char **argv) {
   }
   if (policy == "Random"){		
     proxyCache = new Random(cacheSize);
+  }
+  if (policy == "LRU"){		
+    proxyCache = new Lru(cacheSize);
   }
 
   shared_ptr<SomethingHandler> handler(new SomethingHandler());

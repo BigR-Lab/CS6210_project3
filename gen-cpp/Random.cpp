@@ -7,7 +7,15 @@ Random::Random(int s): Cache(s) {
 }
 		
 string Random::get(string key){
-	return "";
+	
+	if ( 0 ) {
+		// If we find the key
+		return ""; // return the actual string
+	}
+	else {
+		return "0";
+	}
+	
 }
 		
 void Random::set(string key, string value){
