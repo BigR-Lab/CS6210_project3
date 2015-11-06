@@ -46,6 +46,7 @@ void loadmode2( SomethingClient *client ) {
 int main(int argc, char **argv) {
 
 	string    _return;
+	string	  ip_addr;
 	int       mode = 0;
 	int       ret = 0;
 
@@ -53,7 +54,7 @@ int main(int argc, char **argv) {
 		request.url = argv[1];
 		mode = 1;
 	}
-	else if( argc == 3 ) {
+	else if( argc == 3 || argc == 4 ) {
 		// Open file and pick load mode
 		in_file.open(argv[1]);
 		if ( in_file.fail() ) {
@@ -66,13 +67,14 @@ int main(int argc, char **argv) {
 		}
 		mode = 2 + atoi(argv[2]);
 		
+		ip_addr = argc == 4 ? argv[3] : "localhost";
 	}
 	else {
-		printf("Usage: something_client [web_address] | [address_file load_mode]\nPinging\n");
+		printf("Usage: something_client [web_address] | [address_file load_mode ip_addr]\nPinging\n");
 		mode = 0;
 	}
 
-	boost::shared_ptr<TSocket> socket(new TSocket("localhost", 9090));
+	boost::shared_ptr<TSocket> socket(new TSocket(ip_addr, 9090));
 	boost::shared_ptr<TTransport> transport(new TBufferedTransport(socket));
 	boost::shared_ptr<TProtocol> protocol(new TBinaryProtocol(transport));
 

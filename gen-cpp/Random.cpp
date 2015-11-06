@@ -42,10 +42,7 @@ void Random::evict(){
 	boost::unordered_map<string,string>::iterator random_it;
 	//it++ is the only way to advance the iterator in boost
 	int i = 0;
-	for(random_it = cache.begin(); random_it != cache.end(); ++random_it){
-		if (i == val){
-			break;
-		}
+	for(random_it = cache.begin(); i < val; ++random_it){
 		i++;
 	}
 	
