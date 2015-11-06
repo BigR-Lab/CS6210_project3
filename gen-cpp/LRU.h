@@ -2,22 +2,29 @@
 #define LRU_H
 
 #include "Cache.h"
+#include "ll.h"
 #include <boost/unordered_map.hpp>
 
 using namespace std;
 using boost::unordered_map;
+
+typedef struct {
+	string key;
+	string data;
+} page;
 
 class Lru: public Cache {
 	public:
 		Lru(int s);
 		
 		string get(string key);
-		
 		void set(string key, string value);
+		void evict();
 	
 	private:
 		int currSize;
-		unordered_map<string,int*> cache;
+		ll_t node_list;
+		unordered_map<string,ll_node_t*> cache;
 
 		
 };
