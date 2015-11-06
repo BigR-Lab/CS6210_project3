@@ -1,9 +1,8 @@
-#include <unordered_map>
-#include <string>
-
+#include <boost/unordered_map.hpp>
 #include "Random.h"
 
 using namespace std;
+using boost::unordered_map;
 
 unordered_map<string,string> cache;
 

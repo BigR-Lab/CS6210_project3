@@ -11,7 +11,7 @@ INC := -I$(THRIFT_DIR) -I$(BOOST_DIR)
 all: something_server something_client
 
 %.o: %.cpp
-		$(CXX) -Wall -std=c++11 -DHAVE_INTTYPES_H -DHAVE_NETINET_IN_H $(INC) -c $< -o $@
+		$(CXX) -Wall -DHAVE_INTTYPES_H -DHAVE_NETINET_IN_H $(INC) -c $< -o $@
 
 something_server: Something_server.o $(GEN_OBJ)
 		$(CXX) $^ -o $@ -L/usr/local/lib -lthrift -lcurl 
