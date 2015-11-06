@@ -1,5 +1,6 @@
 #include "Something.h"  // As an example
 
+#include <fstream>
 
 #include <transport/TSocket.h>
 #include <transport/TBufferTransports.h>
@@ -15,18 +16,35 @@ using namespace apache::thrift::transport;
 using namespace Test;
 using namespace std;
 
-void loadmode1( SomethingClient *client, FILE *fp ) {
+ifstream in_file;
+Url_req   request;
 
+
+void loadmode1( SomethingClient *client ) {
+	string line;
+	string _return;
+	while (getline(in_file, line)){
+			request.url = line;
+			client->request(_return, request);
+			//should probably dump to a file instead?
+			cout << _return << endl;
+	}
 }
 
-void loadmode2( SomethingClient *client, FILE *fp ) {
+void loadmode2( SomethingClient *client ) {
+
+	//puting addresses in vector, so can access in non-sequential order
+	vector<string> addresses;
+	string line;
+	while (getline(in_file, line)){
+		addresses.push_back(line);
+	}
+
 
 }
 
 int main(int argc, char **argv) {
 
-	Url_req   request;
-	FILE      *fp;
 	string    _return;
 	int       mode = 0;
 	int       ret = 0;
@@ -37,8 +55,8 @@ int main(int argc, char **argv) {
 	}
 	else if( argc == 3 ) {
 		// Open file and pick load mode
-		fp = fopen (argv[1],"r");
-		if ( fp == NULL ) {
+		in_file.open(argv[1]);
+		if ( in_file.fail() ) {
 			printf("File failed to open!\n");
 			return 0;
 		}
@@ -71,10 +89,10 @@ int main(int argc, char **argv) {
 		cout << _return << endl;
 		break;
 	case 3 :
-		loadmode1( &client, fp );
+		loadmode1( &client );
 		break;
 	case 4 :
-		loadmode2( &client, fp );
+		loadmode2( &client );
 		break;
 	default :
 		printf("INVALID MODE\n");
