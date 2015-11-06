@@ -28,12 +28,6 @@ using namespace std;
 string data;
 Cache* proxyCache;
 
-string hash( string key ) {
-
-	return "";
-	
-}
-
 size_t write_to_string(char *buf, size_t size, size_t count, void *stream) {
 	for (unsigned int c = 0; c < size*count; c++){
 		data.push_back(buf[c]);
@@ -59,7 +53,7 @@ class SomethingHandler : virtual public SomethingIf {
 		CURL   *curl;
 		string key, temp;
 				
-		temp = proxyCache->get(req.url.c_str());
+		temp = proxyCache->get(req.url);
 		if( temp == "0" ) {
 			curl = curl_easy_init();
 			_return = "ERROR";
@@ -74,9 +68,9 @@ class SomethingHandler : virtual public SomethingIf {
 
 				curl_easy_perform(curl);
 				
-				printf("Retrieved site of size %d!\n",data.size());
+				printf("Retrieved site of size %d!\n",(int)data.size());
 				_return = data;
-				proxyCache->set(req.url.c_str(), data);
+				proxyCache->set(req.url, data);
 			
 				curl_easy_cleanup(curl);    					
 				data.clear(); 

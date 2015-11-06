@@ -14,7 +14,7 @@ class Cache {
 		virtual void set(string key, string value) = 0;	
 	
 	protected:
-		int size;
+		unsigned int size;
 };
 
 #endif
