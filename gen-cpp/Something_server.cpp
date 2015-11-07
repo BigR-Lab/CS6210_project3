@@ -10,6 +10,7 @@
 #include "Cache.h"
 #include "Random.h"
 #include "LRU.h"
+#include "LRU_min.h"
 
 #include <curl/curl.h>
 #include <stdlib.h>
@@ -26,6 +27,7 @@ using namespace  ::Test;
 using namespace std;
 
 string data;
+string policy;
 Cache* proxyCache;
 
 size_t write_to_string(char *buf, size_t size, size_t count, void *stream) {
@@ -38,7 +40,7 @@ size_t write_to_string(char *buf, size_t size, size_t count, void *stream) {
 class SomethingHandler : virtual public SomethingIf {
  public:
   SomethingHandler() {
-    printf("Caching Server Started!\n");
+    cout << "Caching Server Started with policy: "<< policy << "!" << endl;
   }
 
 	int32_t ping() {
@@ -88,7 +90,7 @@ class SomethingHandler : virtual public SomethingIf {
 };
 
 int main(int argc, char **argv) {
-  string policy;
+  
   int cacheSize;
   int port = 9090;
   if (argc == 3){

@@ -5,6 +5,12 @@
 
 using namespace std;
 
+typedef struct {
+	string key;
+	string data;
+	int size;
+} page;
+
 class Cache {
 	public:
 		Cache(int s) : size(s){

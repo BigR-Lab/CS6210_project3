@@ -8,10 +8,6 @@
 using namespace std;
 using boost::unordered_map;
 
-typedef struct {
-	string key;
-	string data;
-} page;
 
 class Lru: public Cache {
 	public:

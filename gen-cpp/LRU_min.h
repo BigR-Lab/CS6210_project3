@@ -8,11 +8,6 @@
 using namespace std;
 using boost::unordered_map;
 
-typedef struct {
-	string key;
-	string data;
-	int size;
-} page;
 
 class Lrum: public Cache {
 	public:
@@ -20,7 +15,7 @@ class Lrum: public Cache {
 		
 		string get(string key);
 		void set(string key, string value);
-		void evict();
+		void evict(int s);
 	
 	private:
 		int currSize;
