@@ -4,16 +4,16 @@
  * DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
  *  @generated
  */
-#include "Something.h"
+#include "Webcache.h"
 
 namespace Test {
 
 
-Something_ping_args::~Something_ping_args() throw() {
+Webcache_ping_args::~Webcache_ping_args() throw() {
 }
 
 
-uint32_t Something_ping_args::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t Webcache_ping_args::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -41,10 +41,10 @@ uint32_t Something_ping_args::read(::apache::thrift::protocol::TProtocol* iprot)
   return xfer;
 }
 
-uint32_t Something_ping_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t Webcache_ping_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("Something_ping_args");
+  xfer += oprot->writeStructBegin("Webcache_ping_args");
 
   xfer += oprot->writeFieldStop();
   xfer += oprot->writeStructEnd();
@@ -52,14 +52,14 @@ uint32_t Something_ping_args::write(::apache::thrift::protocol::TProtocol* oprot
 }
 
 
-Something_ping_pargs::~Something_ping_pargs() throw() {
+Webcache_ping_pargs::~Webcache_ping_pargs() throw() {
 }
 
 
-uint32_t Something_ping_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t Webcache_ping_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("Something_ping_pargs");
+  xfer += oprot->writeStructBegin("Webcache_ping_pargs");
 
   xfer += oprot->writeFieldStop();
   xfer += oprot->writeStructEnd();
@@ -67,11 +67,11 @@ uint32_t Something_ping_pargs::write(::apache::thrift::protocol::TProtocol* opro
 }
 
 
-Something_ping_result::~Something_ping_result() throw() {
+Webcache_ping_result::~Webcache_ping_result() throw() {
 }
 
 
-uint32_t Something_ping_result::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t Webcache_ping_result::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -112,11 +112,11 @@ uint32_t Something_ping_result::read(::apache::thrift::protocol::TProtocol* ipro
   return xfer;
 }
 
-uint32_t Something_ping_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t Webcache_ping_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
 
   uint32_t xfer = 0;
 
-  xfer += oprot->writeStructBegin("Something_ping_result");
+  xfer += oprot->writeStructBegin("Webcache_ping_result");
 
   if (this->__isset.success) {
     xfer += oprot->writeFieldBegin("success", ::apache::thrift::protocol::T_I32, 0);
@@ -129,11 +129,11 @@ uint32_t Something_ping_result::write(::apache::thrift::protocol::TProtocol* opr
 }
 
 
-Something_ping_presult::~Something_ping_presult() throw() {
+Webcache_ping_presult::~Webcache_ping_presult() throw() {
 }
 
 
-uint32_t Something_ping_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t Webcache_ping_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -175,11 +175,11 @@ uint32_t Something_ping_presult::read(::apache::thrift::protocol::TProtocol* ipr
 }
 
 
-Something_request_args::~Something_request_args() throw() {
+Webcache_status_args::~Webcache_status_args() throw() {
 }
 
 
-uint32_t Something_request_args::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t Webcache_status_args::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -198,20 +198,7 @@ uint32_t Something_request_args::read(::apache::thrift::protocol::TProtocol* ipr
     if (ftype == ::apache::thrift::protocol::T_STOP) {
       break;
     }
-    switch (fid)
-    {
-      case 1:
-        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
-          xfer += this->req.read(iprot);
-          this->__isset.req = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      default:
-        xfer += iprot->skip(ftype);
-        break;
-    }
+    xfer += iprot->skip(ftype);
     xfer += iprot->readFieldEnd();
   }
 
@@ -220,14 +207,10 @@ uint32_t Something_request_args::read(::apache::thrift::protocol::TProtocol* ipr
   return xfer;
 }
 
-uint32_t Something_request_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t Webcache_status_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("Something_request_args");
-
-  xfer += oprot->writeFieldBegin("req", ::apache::thrift::protocol::T_STRUCT, 1);
-  xfer += this->req.write(oprot);
-  xfer += oprot->writeFieldEnd();
+  xfer += oprot->writeStructBegin("Webcache_status_args");
 
   xfer += oprot->writeFieldStop();
   xfer += oprot->writeStructEnd();
@@ -235,18 +218,14 @@ uint32_t Something_request_args::write(::apache::thrift::protocol::TProtocol* op
 }
 
 
-Something_request_pargs::~Something_request_pargs() throw() {
+Webcache_status_pargs::~Webcache_status_pargs() throw() {
 }
 
 
-uint32_t Something_request_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t Webcache_status_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("Something_request_pargs");
-
-  xfer += oprot->writeFieldBegin("req", ::apache::thrift::protocol::T_STRUCT, 1);
-  xfer += (*(this->req)).write(oprot);
-  xfer += oprot->writeFieldEnd();
+  xfer += oprot->writeStructBegin("Webcache_status_pargs");
 
   xfer += oprot->writeFieldStop();
   xfer += oprot->writeStructEnd();
@@ -254,11 +233,11 @@ uint32_t Something_request_pargs::write(::apache::thrift::protocol::TProtocol* o
 }
 
 
-Something_request_result::~Something_request_result() throw() {
+Webcache_status_result::~Webcache_status_result() throw() {
 }
 
 
-uint32_t Something_request_result::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t Webcache_status_result::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -299,11 +278,11 @@ uint32_t Something_request_result::read(::apache::thrift::protocol::TProtocol* i
   return xfer;
 }
 
-uint32_t Something_request_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t Webcache_status_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
 
   uint32_t xfer = 0;
 
-  xfer += oprot->writeStructBegin("Something_request_result");
+  xfer += oprot->writeStructBegin("Webcache_status_result");
 
   if (this->__isset.success) {
     xfer += oprot->writeFieldBegin("success", ::apache::thrift::protocol::T_STRING, 0);
@@ -316,11 +295,11 @@ uint32_t Something_request_result::write(::apache::thrift::protocol::TProtocol* 
 }
 
 
-Something_request_presult::~Something_request_presult() throw() {
+Webcache_status_presult::~Webcache_status_presult() throw() {
 }
 
 
-uint32_t Something_request_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t Webcache_status_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -361,18 +340,205 @@ uint32_t Something_request_presult::read(::apache::thrift::protocol::TProtocol* 
   return xfer;
 }
 
-int32_t SomethingClient::ping()
+
+Webcache_request_args::~Webcache_request_args() throw() {
+}
+
+
+uint32_t Webcache_request_args::read(::apache::thrift::protocol::TProtocol* iprot) {
+
+  apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
+  uint32_t xfer = 0;
+  std::string fname;
+  ::apache::thrift::protocol::TType ftype;
+  int16_t fid;
+
+  xfer += iprot->readStructBegin(fname);
+
+  using ::apache::thrift::protocol::TProtocolException;
+
+
+  while (true)
+  {
+    xfer += iprot->readFieldBegin(fname, ftype, fid);
+    if (ftype == ::apache::thrift::protocol::T_STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
+          xfer += this->req.read(iprot);
+          this->__isset.req = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
+    xfer += iprot->readFieldEnd();
+  }
+
+  xfer += iprot->readStructEnd();
+
+  return xfer;
+}
+
+uint32_t Webcache_request_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
+  uint32_t xfer = 0;
+  apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
+  xfer += oprot->writeStructBegin("Webcache_request_args");
+
+  xfer += oprot->writeFieldBegin("req", ::apache::thrift::protocol::T_STRUCT, 1);
+  xfer += this->req.write(oprot);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldStop();
+  xfer += oprot->writeStructEnd();
+  return xfer;
+}
+
+
+Webcache_request_pargs::~Webcache_request_pargs() throw() {
+}
+
+
+uint32_t Webcache_request_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
+  uint32_t xfer = 0;
+  apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
+  xfer += oprot->writeStructBegin("Webcache_request_pargs");
+
+  xfer += oprot->writeFieldBegin("req", ::apache::thrift::protocol::T_STRUCT, 1);
+  xfer += (*(this->req)).write(oprot);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldStop();
+  xfer += oprot->writeStructEnd();
+  return xfer;
+}
+
+
+Webcache_request_result::~Webcache_request_result() throw() {
+}
+
+
+uint32_t Webcache_request_result::read(::apache::thrift::protocol::TProtocol* iprot) {
+
+  apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
+  uint32_t xfer = 0;
+  std::string fname;
+  ::apache::thrift::protocol::TType ftype;
+  int16_t fid;
+
+  xfer += iprot->readStructBegin(fname);
+
+  using ::apache::thrift::protocol::TProtocolException;
+
+
+  while (true)
+  {
+    xfer += iprot->readFieldBegin(fname, ftype, fid);
+    if (ftype == ::apache::thrift::protocol::T_STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+        if (ftype == ::apache::thrift::protocol::T_STRING) {
+          xfer += iprot->readString(this->success);
+          this->__isset.success = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
+    xfer += iprot->readFieldEnd();
+  }
+
+  xfer += iprot->readStructEnd();
+
+  return xfer;
+}
+
+uint32_t Webcache_request_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
+
+  uint32_t xfer = 0;
+
+  xfer += oprot->writeStructBegin("Webcache_request_result");
+
+  if (this->__isset.success) {
+    xfer += oprot->writeFieldBegin("success", ::apache::thrift::protocol::T_STRING, 0);
+    xfer += oprot->writeString(this->success);
+    xfer += oprot->writeFieldEnd();
+  }
+  xfer += oprot->writeFieldStop();
+  xfer += oprot->writeStructEnd();
+  return xfer;
+}
+
+
+Webcache_request_presult::~Webcache_request_presult() throw() {
+}
+
+
+uint32_t Webcache_request_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
+
+  apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
+  uint32_t xfer = 0;
+  std::string fname;
+  ::apache::thrift::protocol::TType ftype;
+  int16_t fid;
+
+  xfer += iprot->readStructBegin(fname);
+
+  using ::apache::thrift::protocol::TProtocolException;
+
+
+  while (true)
+  {
+    xfer += iprot->readFieldBegin(fname, ftype, fid);
+    if (ftype == ::apache::thrift::protocol::T_STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+        if (ftype == ::apache::thrift::protocol::T_STRING) {
+          xfer += iprot->readString((*(this->success)));
+          this->__isset.success = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
+    xfer += iprot->readFieldEnd();
+  }
+
+  xfer += iprot->readStructEnd();
+
+  return xfer;
+}
+
+int32_t WebcacheClient::ping()
 {
   send_ping();
   return recv_ping();
 }
 
-void SomethingClient::send_ping()
+void WebcacheClient::send_ping()
 {
   int32_t cseqid = 0;
   oprot_->writeMessageBegin("ping", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  Something_ping_pargs args;
+  Webcache_ping_pargs args;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -380,7 +546,7 @@ void SomethingClient::send_ping()
   oprot_->getTransport()->flush();
 }
 
-int32_t SomethingClient::recv_ping()
+int32_t WebcacheClient::recv_ping()
 {
 
   int32_t rseqid = 0;
@@ -406,7 +572,7 @@ int32_t SomethingClient::recv_ping()
     iprot_->getTransport()->readEnd();
   }
   int32_t _return;
-  Something_ping_presult result;
+  Webcache_ping_presult result;
   result.success = &_return;
   result.read(iprot_);
   iprot_->readMessageEnd();
@@ -418,18 +584,75 @@ int32_t SomethingClient::recv_ping()
   throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "ping failed: unknown result");
 }
 
-void SomethingClient::request(std::string& _return, const Url_req& req)
+void WebcacheClient::status(std::string& _return)
+{
+  send_status();
+  recv_status(_return);
+}
+
+void WebcacheClient::send_status()
+{
+  int32_t cseqid = 0;
+  oprot_->writeMessageBegin("status", ::apache::thrift::protocol::T_CALL, cseqid);
+
+  Webcache_status_pargs args;
+  args.write(oprot_);
+
+  oprot_->writeMessageEnd();
+  oprot_->getTransport()->writeEnd();
+  oprot_->getTransport()->flush();
+}
+
+void WebcacheClient::recv_status(std::string& _return)
+{
+
+  int32_t rseqid = 0;
+  std::string fname;
+  ::apache::thrift::protocol::TMessageType mtype;
+
+  iprot_->readMessageBegin(fname, mtype, rseqid);
+  if (mtype == ::apache::thrift::protocol::T_EXCEPTION) {
+    ::apache::thrift::TApplicationException x;
+    x.read(iprot_);
+    iprot_->readMessageEnd();
+    iprot_->getTransport()->readEnd();
+    throw x;
+  }
+  if (mtype != ::apache::thrift::protocol::T_REPLY) {
+    iprot_->skip(::apache::thrift::protocol::T_STRUCT);
+    iprot_->readMessageEnd();
+    iprot_->getTransport()->readEnd();
+  }
+  if (fname.compare("status") != 0) {
+    iprot_->skip(::apache::thrift::protocol::T_STRUCT);
+    iprot_->readMessageEnd();
+    iprot_->getTransport()->readEnd();
+  }
+  Webcache_status_presult result;
+  result.success = &_return;
+  result.read(iprot_);
+  iprot_->readMessageEnd();
+  iprot_->getTransport()->readEnd();
+
+  if (result.__isset.success) {
+    // _return pointer has now been filled
+    return;
+  }
+  throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "status failed: unknown result");
+}
+
+void WebcacheClient::request(std::string& _return, const Url_req& req)
 {
   send_request(req);
   recv_request(_return);
 }
 
-void SomethingClient::send_request(const Url_req& req)
+void WebcacheClient::send_request(const Url_req& req)
 {
   int32_t cseqid = 0;
   oprot_->writeMessageBegin("request", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  Something_request_pargs args;
+  Webcache_request_pargs args;
   args.req = &req;
   args.write(oprot_);
 
@@ -438,7 +661,7 @@ void SomethingClient::send_request(const Url_req& req)
   oprot_->getTransport()->flush();
 }
 
-void SomethingClient::recv_request(std::string& _return)
+void WebcacheClient::recv_request(std::string& _return)
 {
 
   int32_t rseqid = 0;
@@ -463,7 +686,7 @@ void SomethingClient::recv_request(std::string& _return)
     iprot_->readMessageEnd();
     iprot_->getTransport()->readEnd();
   }
-  Something_request_presult result;
+  Webcache_request_presult result;
   result.success = &_return;
   result.read(iprot_);
   iprot_->readMessageEnd();
@@ -476,7 +699,7 @@ void SomethingClient::recv_request(std::string& _return)
   throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "request failed: unknown result");
 }
 
-bool SomethingProcessor::dispatchCall(::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, const std::string& fname, int32_t seqid, void* callContext) {
+bool WebcacheProcessor::dispatchCall(::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, const std::string& fname, int32_t seqid, void* callContext) {
   ProcessMap::iterator pfn;
   pfn = processMap_.find(fname);
   if (pfn == processMap_.end()) {
@@ -495,34 +718,34 @@ bool SomethingProcessor::dispatchCall(::apache::thrift::protocol::TProtocol* ipr
   return true;
 }
 
-void SomethingProcessor::process_ping(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
+void WebcacheProcessor::process_ping(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
 {
   void* ctx = NULL;
   if (this->eventHandler_.get() != NULL) {
-    ctx = this->eventHandler_->getContext("Something.ping", callContext);
+    ctx = this->eventHandler_->getContext("Webcache.ping", callContext);
   }
-  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "Something.ping");
+  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "Webcache.ping");
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preRead(ctx, "Something.ping");
+    this->eventHandler_->preRead(ctx, "Webcache.ping");
   }
 
-  Something_ping_args args;
+  Webcache_ping_args args;
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postRead(ctx, "Something.ping", bytes);
+    this->eventHandler_->postRead(ctx, "Webcache.ping", bytes);
   }
 
-  Something_ping_result result;
+  Webcache_ping_result result;
   try {
     result.success = iface_->ping();
     result.__isset.success = true;
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != NULL) {
-      this->eventHandler_->handlerError(ctx, "Something.ping");
+      this->eventHandler_->handlerError(ctx, "Webcache.ping");
     }
 
     ::apache::thrift::TApplicationException x(e.what());
@@ -535,7 +758,7 @@ void SomethingProcessor::process_ping(int32_t seqid, ::apache::thrift::protocol:
   }
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preWrite(ctx, "Something.ping");
+    this->eventHandler_->preWrite(ctx, "Webcache.ping");
   }
 
   oprot->writeMessageBegin("ping", ::apache::thrift::protocol::T_REPLY, seqid);
@@ -545,38 +768,92 @@ void SomethingProcessor::process_ping(int32_t seqid, ::apache::thrift::protocol:
   oprot->getTransport()->flush();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postWrite(ctx, "Something.ping", bytes);
+    this->eventHandler_->postWrite(ctx, "Webcache.ping", bytes);
   }
 }
 
-void SomethingProcessor::process_request(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
+void WebcacheProcessor::process_status(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
 {
   void* ctx = NULL;
   if (this->eventHandler_.get() != NULL) {
-    ctx = this->eventHandler_->getContext("Something.request", callContext);
+    ctx = this->eventHandler_->getContext("Webcache.status", callContext);
   }
-  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "Something.request");
+  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "Webcache.status");
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preRead(ctx, "Something.request");
+    this->eventHandler_->preRead(ctx, "Webcache.status");
   }
 
-  Something_request_args args;
+  Webcache_status_args args;
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postRead(ctx, "Something.request", bytes);
+    this->eventHandler_->postRead(ctx, "Webcache.status", bytes);
   }
 
-  Something_request_result result;
+  Webcache_status_result result;
+  try {
+    iface_->status(result.success);
+    result.__isset.success = true;
+  } catch (const std::exception& e) {
+    if (this->eventHandler_.get() != NULL) {
+      this->eventHandler_->handlerError(ctx, "Webcache.status");
+    }
+
+    ::apache::thrift::TApplicationException x(e.what());
+    oprot->writeMessageBegin("status", ::apache::thrift::protocol::T_EXCEPTION, seqid);
+    x.write(oprot);
+    oprot->writeMessageEnd();
+    oprot->getTransport()->writeEnd();
+    oprot->getTransport()->flush();
+    return;
+  }
+
+  if (this->eventHandler_.get() != NULL) {
+    this->eventHandler_->preWrite(ctx, "Webcache.status");
+  }
+
+  oprot->writeMessageBegin("status", ::apache::thrift::protocol::T_REPLY, seqid);
+  result.write(oprot);
+  oprot->writeMessageEnd();
+  bytes = oprot->getTransport()->writeEnd();
+  oprot->getTransport()->flush();
+
+  if (this->eventHandler_.get() != NULL) {
+    this->eventHandler_->postWrite(ctx, "Webcache.status", bytes);
+  }
+}
+
+void WebcacheProcessor::process_request(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
+{
+  void* ctx = NULL;
+  if (this->eventHandler_.get() != NULL) {
+    ctx = this->eventHandler_->getContext("Webcache.request", callContext);
+  }
+  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "Webcache.request");
+
+  if (this->eventHandler_.get() != NULL) {
+    this->eventHandler_->preRead(ctx, "Webcache.request");
+  }
+
+  Webcache_request_args args;
+  args.read(iprot);
+  iprot->readMessageEnd();
+  uint32_t bytes = iprot->getTransport()->readEnd();
+
+  if (this->eventHandler_.get() != NULL) {
+    this->eventHandler_->postRead(ctx, "Webcache.request", bytes);
+  }
+
+  Webcache_request_result result;
   try {
     iface_->request(result.success, args.req);
     result.__isset.success = true;
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != NULL) {
-      this->eventHandler_->handlerError(ctx, "Something.request");
+      this->eventHandler_->handlerError(ctx, "Webcache.request");
     }
 
     ::apache::thrift::TApplicationException x(e.what());
@@ -589,7 +866,7 @@ void SomethingProcessor::process_request(int32_t seqid, ::apache::thrift::protoc
   }
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preWrite(ctx, "Something.request");
+    this->eventHandler_->preWrite(ctx, "Webcache.request");
   }
 
   oprot->writeMessageBegin("request", ::apache::thrift::protocol::T_REPLY, seqid);
@@ -599,30 +876,30 @@ void SomethingProcessor::process_request(int32_t seqid, ::apache::thrift::protoc
   oprot->getTransport()->flush();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postWrite(ctx, "Something.request", bytes);
+    this->eventHandler_->postWrite(ctx, "Webcache.request", bytes);
   }
 }
 
-::boost::shared_ptr< ::apache::thrift::TProcessor > SomethingProcessorFactory::getProcessor(const ::apache::thrift::TConnectionInfo& connInfo) {
-  ::apache::thrift::ReleaseHandler< SomethingIfFactory > cleanup(handlerFactory_);
-  ::boost::shared_ptr< SomethingIf > handler(handlerFactory_->getHandler(connInfo), cleanup);
-  ::boost::shared_ptr< ::apache::thrift::TProcessor > processor(new SomethingProcessor(handler));
+::boost::shared_ptr< ::apache::thrift::TProcessor > WebcacheProcessorFactory::getProcessor(const ::apache::thrift::TConnectionInfo& connInfo) {
+  ::apache::thrift::ReleaseHandler< WebcacheIfFactory > cleanup(handlerFactory_);
+  ::boost::shared_ptr< WebcacheIf > handler(handlerFactory_->getHandler(connInfo), cleanup);
+  ::boost::shared_ptr< ::apache::thrift::TProcessor > processor(new WebcacheProcessor(handler));
   return processor;
 }
 
-int32_t SomethingConcurrentClient::ping()
+int32_t WebcacheConcurrentClient::ping()
 {
   int32_t seqid = send_ping();
   return recv_ping(seqid);
 }
 
-int32_t SomethingConcurrentClient::send_ping()
+int32_t WebcacheConcurrentClient::send_ping()
 {
   int32_t cseqid = this->sync_.generateSeqId();
   ::apache::thrift::async::TConcurrentSendSentry sentry(&this->sync_);
   oprot_->writeMessageBegin("ping", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  Something_ping_pargs args;
+  Webcache_ping_pargs args;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -633,7 +910,7 @@ int32_t SomethingConcurrentClient::send_ping()
   return cseqid;
 }
 
-int32_t SomethingConcurrentClient::recv_ping(const int32_t seqid)
+int32_t WebcacheConcurrentClient::recv_ping(const int32_t seqid)
 {
 
   int32_t rseqid = 0;
@@ -672,7 +949,7 @@ int32_t SomethingConcurrentClient::recv_ping(const int32_t seqid)
         throw TProtocolException(TProtocolException::INVALID_DATA);
       }
       int32_t _return;
-      Something_ping_presult result;
+      Webcache_ping_presult result;
       result.success = &_return;
       result.read(iprot_);
       iprot_->readMessageEnd();
@@ -693,19 +970,102 @@ int32_t SomethingConcurrentClient::recv_ping(const int32_t seqid)
   } // end while(true)
 }
 
-void SomethingConcurrentClient::request(std::string& _return, const Url_req& req)
+void WebcacheConcurrentClient::status(std::string& _return)
+{
+  int32_t seqid = send_status();
+  recv_status(_return, seqid);
+}
+
+int32_t WebcacheConcurrentClient::send_status()
+{
+  int32_t cseqid = this->sync_.generateSeqId();
+  ::apache::thrift::async::TConcurrentSendSentry sentry(&this->sync_);
+  oprot_->writeMessageBegin("status", ::apache::thrift::protocol::T_CALL, cseqid);
+
+  Webcache_status_pargs args;
+  args.write(oprot_);
+
+  oprot_->writeMessageEnd();
+  oprot_->getTransport()->writeEnd();
+  oprot_->getTransport()->flush();
+
+  sentry.commit();
+  return cseqid;
+}
+
+void WebcacheConcurrentClient::recv_status(std::string& _return, const int32_t seqid)
+{
+
+  int32_t rseqid = 0;
+  std::string fname;
+  ::apache::thrift::protocol::TMessageType mtype;
+
+  // the read mutex gets dropped and reacquired as part of waitForWork()
+  // The destructor of this sentry wakes up other clients
+  ::apache::thrift::async::TConcurrentRecvSentry sentry(&this->sync_, seqid);
+
+  while(true) {
+    if(!this->sync_.getPending(fname, mtype, rseqid)) {
+      iprot_->readMessageBegin(fname, mtype, rseqid);
+    }
+    if(seqid == rseqid) {
+      if (mtype == ::apache::thrift::protocol::T_EXCEPTION) {
+        ::apache::thrift::TApplicationException x;
+        x.read(iprot_);
+        iprot_->readMessageEnd();
+        iprot_->getTransport()->readEnd();
+        sentry.commit();
+        throw x;
+      }
+      if (mtype != ::apache::thrift::protocol::T_REPLY) {
+        iprot_->skip(::apache::thrift::protocol::T_STRUCT);
+        iprot_->readMessageEnd();
+        iprot_->getTransport()->readEnd();
+      }
+      if (fname.compare("status") != 0) {
+        iprot_->skip(::apache::thrift::protocol::T_STRUCT);
+        iprot_->readMessageEnd();
+        iprot_->getTransport()->readEnd();
+
+        // in a bad state, don't commit
+        using ::apache::thrift::protocol::TProtocolException;
+        throw TProtocolException(TProtocolException::INVALID_DATA);
+      }
+      Webcache_status_presult result;
+      result.success = &_return;
+      result.read(iprot_);
+      iprot_->readMessageEnd();
+      iprot_->getTransport()->readEnd();
+
+      if (result.__isset.success) {
+        // _return pointer has now been filled
+        sentry.commit();
+        return;
+      }
+      // in a bad state, don't commit
+      throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "status failed: unknown result");
+    }
+    // seqid != rseqid
+    this->sync_.updatePending(fname, mtype, rseqid);
+
+    // this will temporarily unlock the readMutex, and let other clients get work done
+    this->sync_.waitForWork(seqid);
+  } // end while(true)
+}
+
+void WebcacheConcurrentClient::request(std::string& _return, const Url_req& req)
 {
   int32_t seqid = send_request(req);
   recv_request(_return, seqid);
 }
 
-int32_t SomethingConcurrentClient::send_request(const Url_req& req)
+int32_t WebcacheConcurrentClient::send_request(const Url_req& req)
 {
   int32_t cseqid = this->sync_.generateSeqId();
   ::apache::thrift::async::TConcurrentSendSentry sentry(&this->sync_);
   oprot_->writeMessageBegin("request", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  Something_request_pargs args;
+  Webcache_request_pargs args;
   args.req = &req;
   args.write(oprot_);
 
@@ -717,7 +1077,7 @@ int32_t SomethingConcurrentClient::send_request(const Url_req& req)
   return cseqid;
 }
 
-void SomethingConcurrentClient::recv_request(std::string& _return, const int32_t seqid)
+void WebcacheConcurrentClient::recv_request(std::string& _return, const int32_t seqid)
 {
 
   int32_t rseqid = 0;
@@ -755,7 +1115,7 @@ void SomethingConcurrentClient::recv_request(std::string& _return, const int32_t
         using ::apache::thrift::protocol::TProtocolException;
         throw TProtocolException(TProtocolException::INVALID_DATA);
       }
-      Something_request_presult result;
+      Webcache_request_presult result;
       result.success = &_return;
       result.read(iprot_);
       iprot_->readMessageEnd();
