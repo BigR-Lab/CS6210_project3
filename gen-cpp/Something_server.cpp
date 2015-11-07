@@ -105,6 +105,9 @@ int main(int argc, char **argv) {
   if (policy == "LRU"){		
     proxyCache = new Lru(cacheSize);
   }
+  if (policy == "LRU_min"){		
+    proxyCache = new Lrum(cacheSize);
+  }
 
   shared_ptr<SomethingHandler> handler(new SomethingHandler());
   shared_ptr<TProcessor> processor(new SomethingProcessor(handler));
