@@ -10,6 +10,8 @@
 #include <stdlib.h>
 #include <time.h>
 
+#define NUM_REQUESTS	100
+
 using namespace apache::thrift;
 using namespace apache::thrift::protocol;
 using namespace apache::thrift::transport;
@@ -24,11 +26,13 @@ Url_req   request;
 void loadmode1( WebcacheClient *client ) {
 	string line;
 	string _return;
+	int i = 0;
 	
 	struct timespec ts0,ts1;
 	long elapsed;
 	
-	while (getline(in_file, line)){
+	while ( i < NUM_REQUESTS ) {
+		while (getline(in_file, line)){
 			request.url = line;
 			clock_gettime(CLOCK_REALTIME, &ts0);
 			
@@ -39,11 +43,21 @@ void loadmode1( WebcacheClient *client ) {
 			//should probably dump to a file instead?
 			//cout << _return << endl;
 			cout << "Page " << request.url << " of size " << _return.size() << " returned in " << elapsed << " ns" << endl;
+			
+			i++;
+			sleep(1); // To prevent sending too many requests to a site too quickly
+		}
+		
+		// Return to beginning of file
+		in_file.clear();
+		in_file.seekg(0, in_file.beg);
 	}
 }
 
 void loadmode2( WebcacheClient *client ) {
 	string _return;
+	Url_req request;
+	int r,i;
 
 	struct timespec ts0,ts1;
 	long elapsed;
@@ -55,14 +69,19 @@ void loadmode2( WebcacheClient *client ) {
 		addresses.push_back(line);
 	}
 	
-	while( 0 ) {
+	for( i=0; i < NUM_REQUESTS; i++ ) {
+		r = rand() % addresses.size();
+		request.url = addresses[r];
+		
 		clock_gettime(CLOCK_REALTIME, &ts0);
 				
-		//client->request(_return, request);
+		client->request(_return, request);
 		
 		clock_gettime(CLOCK_REALTIME, &ts1);
 		elapsed = (ts1.tv_nsec-ts0.tv_nsec)+((ts1.tv_sec-ts0.tv_sec)*1000000000);
 		cout << "Page " << request.url << " of size " << _return.size() << " returned in " << elapsed << " ns" << endl;
+		
+		sleep(1); // To prevent sending too many requests to a site too quickly
 	}
 
 }
