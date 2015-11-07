@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 using namespace apache::thrift;
 using namespace apache::thrift::protocol;
@@ -23,15 +24,29 @@ Url_req   request;
 void loadmode1( SomethingClient *client ) {
 	string line;
 	string _return;
+	
+	struct timespec ts0,ts1;
+	long elapsed;
+	
 	while (getline(in_file, line)){
 			request.url = line;
+			clock_gettime(CLOCK_REALTIME, &ts0);
+			
 			client->request(_return, request);
+			
+			clock_gettime(CLOCK_REALTIME, &ts1);
+			elapsed = (ts1.tv_nsec-ts0.tv_nsec)+((ts1.tv_sec-ts0.tv_sec)*1000000000);
 			//should probably dump to a file instead?
-			cout << _return << endl;
+			//cout << _return << endl;
+			cout << "Page " << request.url << " of size " << _return.size() << " returned in " << elapsed << " ns" << endl;
 	}
 }
 
 void loadmode2( SomethingClient *client ) {
+	string _return;
+
+	struct timespec ts0,ts1;
+	long elapsed;
 
 	//puting addresses in vector, so can access in non-sequential order
 	vector<string> addresses;
@@ -39,7 +54,16 @@ void loadmode2( SomethingClient *client ) {
 	while (getline(in_file, line)){
 		addresses.push_back(line);
 	}
-
+	
+	while( 0 ) {
+		clock_gettime(CLOCK_REALTIME, &ts0);
+				
+		//client->request(_return, request);
+		
+		clock_gettime(CLOCK_REALTIME, &ts1);
+		elapsed = (ts1.tv_nsec-ts0.tv_nsec)+((ts1.tv_sec-ts0.tv_sec)*1000000000);
+		cout << "Page " << request.url << " of size " << _return.size() << " returned in " << elapsed << " ns" << endl;
+	}
 
 }
 
@@ -49,9 +73,13 @@ int main(int argc, char **argv) {
 	string	  ip_addr;
 	int       mode = 0;
 	int       ret = 0;
+	
+	struct timespec ts0,ts1;
+	long elapsed;
 
 	if( argc == 2 ) {
 		request.url = argv[1];
+		ip_addr = "localhost";
 		mode = 1;
 	}
 	else if( argc == 3 || argc == 4 ) {
@@ -86,9 +114,14 @@ int main(int argc, char **argv) {
 		printf("ping returned: %d\n",ret);
 		break;
 	case 1 :
-		printf("requesting single page!\n");
+		cout << "requesting single page!" << endl;
+		clock_gettime(CLOCK_REALTIME, &ts0);
+				
 		client.request(_return, request);
-		cout << _return << endl;
+		
+		clock_gettime(CLOCK_REALTIME, &ts1);
+		elapsed = (ts1.tv_nsec-ts0.tv_nsec)+((ts1.tv_sec-ts0.tv_sec)*1000000000);
+		cout << "Page " << request.url << " of size " << _return.size() << " returned in " << elapsed << " ns" << endl;
 		break;
 	case 3 :
 		loadmode1( &client );
