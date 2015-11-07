@@ -26,7 +26,7 @@ The server must be run first, to do so, run the following command:
 
 	The policy can be specified as "Random" "LRU" or "LRU_min"; the default is "Random"
 
-	cache_size can be any number up to 2^32
+	cache_size can be any number up to 2^31
 	
 The client can then be run with the following command:
 
@@ -36,6 +36,14 @@ The client can then be run with the following command:
 	
 	address_file is a text file with websites to be accessed, each on its own line
 	
-	load_mode: 1 for linear in file, 2 for random
+	load_mode: 1 for looped linear in file, 2 for random
 	
 	ip_addr is the IP address of the server
+	
+----------------
+Operation
+----------------
+
+Webcache_client will send either a single url request or 100 (if a single or file was given, respectively)
+to webcache_server. Webcache_server will fetch the web page from either its cache or, if it
+is not present in the cache, from the internet and return the contents as a string to Webcache_client.
