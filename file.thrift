@@ -7,8 +7,10 @@ struct Url_req {
 	2: i32   force
 }
 
-service Something {
+service Webcache {
 	i32 ping(),
+	
+	string status(),
 
 	string request(1: Url_req req)
 }

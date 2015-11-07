@@ -1,4 +1,4 @@
-#include "Something.h"  // As an example
+#include "Webcache.h"  // As an example
 
 #include <fstream>
 
@@ -21,7 +21,7 @@ ifstream in_file;
 Url_req   request;
 
 
-void loadmode1( SomethingClient *client ) {
+void loadmode1( WebcacheClient *client ) {
 	string line;
 	string _return;
 	
@@ -42,7 +42,7 @@ void loadmode1( SomethingClient *client ) {
 	}
 }
 
-void loadmode2( SomethingClient *client ) {
+void loadmode2( WebcacheClient *client ) {
 	string _return;
 
 	struct timespec ts0,ts1;
@@ -98,7 +98,7 @@ int main(int argc, char **argv) {
 		ip_addr = argc == 4 ? argv[3] : "localhost";
 	}
 	else {
-		printf("Usage: something_client [web_address] | [address_file load_mode ip_addr]\nPinging\n");
+		printf("Usage: Webcache_client [web_address] | [address_file load_mode ip_addr]\nPinging\n");
 		mode = 0;
 	}
 
@@ -106,7 +106,7 @@ int main(int argc, char **argv) {
 	boost::shared_ptr<TTransport> transport(new TBufferedTransport(socket));
 	boost::shared_ptr<TProtocol> protocol(new TBinaryProtocol(transport));
 
-	SomethingClient client(protocol);
+	WebcacheClient client(protocol);
 	transport->open();
 	switch (mode) {
 	case 0 :

@@ -22,7 +22,7 @@ Usage
 ----------------
 The server must be run first, to do so, run the following command:
 
-./something_server [policy cache_size]
+./Webcache_server [policy cache_size]
 
 	The policy can be specified as "Random" "LRU" or "LRU_min"; the default is "Random"
 
@@ -30,7 +30,7 @@ The server must be run first, to do so, run the following command:
 	
 The client can then be run with the following command:
 
-./something_client [web_address] | [address_file load_mode ip_addr]
+./Webcache_client [web_address] | [address_file load_mode ip_addr]
 
 	web_address is a single web address to be requested; server must be the localhost in this case
 	
