@@ -42,7 +42,8 @@ void loadmode1( WebcacheClient *client ) {
 			elapsed = (ts1.tv_nsec-ts0.tv_nsec)+((ts1.tv_sec-ts0.tv_sec)*1000000000);
 			//should probably dump to a file instead?
 			//cout << _return << endl;
-			cout << "Page " << request.url << " of size " << _return.size() << " returned in " << elapsed << " ns" << endl;
+			//cout << "Page " << request.url << " of size " << _return.size() << " returned in " << elapsed << " ns" << endl;
+			cout << request.url << ", " << _return.size() << ", " << elapsed << endl;
 			
 			i++;
 			sleep(1); // To prevent sending too many requests to a site too quickly
@@ -79,7 +80,8 @@ void loadmode2( WebcacheClient *client ) {
 		
 		clock_gettime(CLOCK_REALTIME, &ts1);
 		elapsed = (ts1.tv_nsec-ts0.tv_nsec)+((ts1.tv_sec-ts0.tv_sec)*1000000000);
-		cout << "Page " << request.url << " of size " << _return.size() << " returned in " << elapsed << " ns" << endl;
+		//cout << "Page " << request.url << " of size " << _return.size() << " returned in " << elapsed << " ns" << endl;
+		cout << request.url << ", " << _return.size() << ", " << elapsed << endl;
 		
 		sleep(1); // To prevent sending too many requests to a site too quickly
 	}
@@ -140,6 +142,7 @@ int main(int argc, char **argv) {
 		
 		clock_gettime(CLOCK_REALTIME, &ts1);
 		elapsed = (ts1.tv_nsec-ts0.tv_nsec)+((ts1.tv_sec-ts0.tv_sec)*1000000000);
+		cout << _return << endl;
 		cout << "Page " << request.url << " of size " << _return.size() << " returned in " << elapsed << " ns" << endl;
 		break;
 	case 3 :
